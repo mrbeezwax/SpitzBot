@@ -27,13 +27,13 @@ public class Squad {
         return leader;
     }
 
-    public void addMember(SquadMember member) {
+    public void addMember(SquadMember member) throws SquadTrackerException {
         if (playerList.size() == CAPACITY) throw new SquadTrackerException("The squad is full");
         if (playerList.contains(member)) throw new SquadTrackerException("They are already in this squad");
         playerList.add(member);
     }
 
-    public void kickMember(int id) {
+    public void kickMember(int id) throws SquadTrackerException {
         if (id > playerList.size() || id < 2) throw new SquadTrackerException("Enter a valid id");
         playerList.remove(id - 1);
     }
