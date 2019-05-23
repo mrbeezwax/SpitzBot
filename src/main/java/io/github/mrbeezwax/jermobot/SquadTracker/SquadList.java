@@ -1,4 +1,7 @@
 package io.github.mrbeezwax.jermobot.SquadTracker;
 
-public class SquadList extends{
+import java.util.ArrayList;
+
+public class SquadList extends ArrayList {
+
 }
