@@ -23,6 +23,10 @@ public class Squad {
         this.title = title;
     }
 
+    public List<SquadMember> getPlayerList() {
+        return playerList;
+    }
+
     public SquadMember getLeader() {
         return leader;
     }
@@ -36,5 +40,9 @@ public class Squad {
     public void kickMember(int id) throws SquadTrackerException {
         if (id > playerList.size() || id < 2) throw new SquadTrackerException("Enter a valid id");
         playerList.remove(id - 1);
+    }
+
+    public int getSize() {
+        return playerList.size();
     }
 }

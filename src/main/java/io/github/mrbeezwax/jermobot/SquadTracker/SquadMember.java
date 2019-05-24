@@ -1,13 +1,14 @@
 package io.github.mrbeezwax.jermobot.SquadTracker;
 
+import io.github.mrbeezwax.jermobot.Main;
 import sx.blah.discord.handle.obj.IUser;
 
 public class SquadMember {
     private int id;
-    private Role role;
+    private String role;
     private IUser user;
 
-    public SquadMember(int id, IUser name, Role role) {
+    public SquadMember(int id, IUser name, String role) {
         this.id = id;
         this.role = role;
         this.user = name;
@@ -21,7 +22,7 @@ public class SquadMember {
         this.id = id;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
