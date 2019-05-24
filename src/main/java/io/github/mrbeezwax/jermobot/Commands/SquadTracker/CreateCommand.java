@@ -25,7 +25,7 @@ public class CreateCommand implements Command {
             return;
         }
         // Check if already in a squad
-        SquadMember leader = new SquadMember(0, user, args.get(0));
+        SquadMember leader = new SquadMember(user, args.get(0));
         for (Squad s : Main.squadList) {
             if (s.getPlayerList().contains(leader)) {
                 channel.sendMessage("You are already part of a squad");

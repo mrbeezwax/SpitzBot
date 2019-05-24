@@ -24,31 +24,32 @@ public class AddCommand implements Command {
         }
         // Get the user to add
         IUser member = event.getMessage().getMentions().get(0);
+        SquadMember sMember = new SquadMember(member, args.get(1));
         // Get squad
-        Squad squad = null;
         for (Squad s : Main.squadList) {
+            // Check if leader
             if (s.getLeader().getUser() == leader) {
-                squad = s;
-                break;
+                // If leader, check if not part of any squad
+                for (Squad s2 : Main.squadList) {
+                    if (s2.getPlayerList().contains(sMember)) {
+                        channel.sendMessage("They are already in a squad");
+                        return;
+                    }
+                }
+                try {
+                    s.addMember(sMember);
+                    return;
+                } catch (SquadTrackerException e) {
+                    channel.sendMessage(e.toString());
+                }
             }
         }
-        // If not a leader, return
-        if (squad == null) {
-            channel.sendMessage("You are not a leader of any squad");
-            return;
-        }
-        // If leader, add the member to squad
-        try {
-            SquadMember sMember = new SquadMember(squad.getSize() + 1, member, args.get(1));
-            squad.addMember(sMember);
-        } catch (SquadTrackerException s) {
-            channel.sendMessage(s.toString());
-        }
+        channel.sendMessage("You are not a leader of any squad");
     }
 
     @Override
     public String getDescription() {
-        return null;
+        return DESCRIPTION;
     }
 
     @Override

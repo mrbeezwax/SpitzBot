@@ -1,5 +1,7 @@
 package io.github.mrbeezwax.jermobot.SquadTracker;
 
+import io.github.mrbeezwax.jermobot.Main;
+
 import java.util.*;
 
 public class Squad {
@@ -33,7 +35,7 @@ public class Squad {
 
     public void addMember(SquadMember member) throws SquadTrackerException {
         if (playerList.size() == CAPACITY) throw new SquadTrackerException("The squad is full");
-        if (playerList.contains(member)) throw new SquadTrackerException("They are already in this squad");
+        if (playerList.contains(member)) throw new SquadTrackerException("Already in this squad");
         playerList.add(member);
     }
 

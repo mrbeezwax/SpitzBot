@@ -1,25 +1,16 @@
 package io.github.mrbeezwax.jermobot.SquadTracker;
 
-import io.github.mrbeezwax.jermobot.Main;
 import sx.blah.discord.handle.obj.IUser;
 
+import java.util.Objects;
+
 public class SquadMember {
-    private int id;
     private String role;
     private IUser user;
 
-    public SquadMember(int id, IUser name, String role) {
-        this.id = id;
+    public SquadMember(IUser name, String role) {
         this.role = role;
         this.user = name;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getRole() {
@@ -28,5 +19,18 @@ public class SquadMember {
 
     public IUser getUser() {
         return user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SquadMember that = (SquadMember) o;
+        return Objects.equals(user, that.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(user);
     }
 }
