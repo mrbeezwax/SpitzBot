@@ -23,13 +23,14 @@ public class KickCommand implements Command {
             channel.sendMessage("Correct syntax: >kick {id}");
             return;
         }
-        // Check if leader and id is valid
+        // Check if leader and user id is valid
         for (Squad s : Main.squadList) {
             SquadMember leader = s.getLeader();
             if (leader.getUser() == user) {
                 try {
                     int id = Integer.parseInt(args.get(0));
                     s.kickMember(id);
+                    channel.sendMessage("Member kicked from squad, " + s.getTitle());
                 } catch (NumberFormatException e) {
                     channel.sendMessage("Enter a valid id number from 2-4");
                 } catch (SquadTrackerException e) {

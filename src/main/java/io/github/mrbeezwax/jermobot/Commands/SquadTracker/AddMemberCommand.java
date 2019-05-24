@@ -11,7 +11,7 @@ import sx.blah.discord.handle.obj.IUser;
 
 import java.util.List;
 
-public class AddCommand implements Command {
+public class AddMemberCommand implements Command {
     private static final String DESCRIPTION = "Add a member to your squad";
 
     @Override
@@ -38,6 +38,7 @@ public class AddCommand implements Command {
                 }
                 try {
                     s.addMember(sMember);
+                    channel.sendMessage("Squad member added successfully");
                     return;
                 } catch (SquadTrackerException e) {
                     channel.sendMessage(e.toString());

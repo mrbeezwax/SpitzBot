@@ -6,7 +6,6 @@ import io.github.mrbeezwax.jermobot.SquadTracker.Squad;
 import io.github.mrbeezwax.jermobot.SquadTracker.SquadMember;
 import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 import sx.blah.discord.handle.obj.IChannel;
-import sx.blah.discord.handle.obj.IGuild;
 import sx.blah.discord.handle.obj.IUser;
 
 import java.util.List;
@@ -33,7 +32,14 @@ public class CreateCommand implements Command {
             }
         }
         // Create the squad
-        Main.squadList.add(new Squad(leader, args.get(1)));
+        StringBuilder builder = new StringBuilder();
+        for (String p : args.subList(1, args.size())) {
+            builder.append(p).append(" ");
+        }
+        String title = builder.toString();
+        title = title.substring(0, title.length() - 1);
+        Main.squadList.add(new Squad(leader, title));
+        channel.sendMessage("Squad " + title + " created successfully");
     }
 
     @Override

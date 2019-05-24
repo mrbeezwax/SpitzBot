@@ -38,8 +38,9 @@ public class JoinCommand implements Command {
                     return;
                 }
             }
-            Squad squad = Main.squadList.get(id);
+            Squad squad = Main.squadList.get(id - 1);
             squad.addMember(member);
+            channel.sendMessage("You have successfully joined the squad, " + squad.getTitle());
         } catch (NumberFormatException e) {
             channel.sendMessage("Please enter a valid squad id number");
         } catch (SquadTrackerException e) {

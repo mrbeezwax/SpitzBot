@@ -21,6 +21,7 @@ public class DisbandCommand implements Command {
             SquadMember leader = s.getLeader();
             if (leader.getUser() == user) {
                 Main.squadList.remove(s);
+                channel.sendMessage("Squad disbanded successfully");
                 return;
             }
         }

@@ -5,6 +5,7 @@ import io.github.mrbeezwax.jermobot.Commands.Activities.SlotMachineCommand;
 import io.github.mrbeezwax.jermobot.Commands.Activities.SurpriseCommand;
 import io.github.mrbeezwax.jermobot.Commands.Activities.TriviaCommand;
 import io.github.mrbeezwax.jermobot.Commands.Currency.*;
+import io.github.mrbeezwax.jermobot.Commands.SquadTracker.*;
 import sx.blah.discord.api.events.EventSubscriber;
 import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 import sx.blah.discord.handle.obj.ICategory;
@@ -37,6 +38,12 @@ public class CommandHandler {
         commandMap.put("allbalances", new AllBalancesCommand());
         commandMap.put("resetlimit", new ResetCrayonLimitCommand());
         commandMap.put("buy", new BuyCommand());
+        commandMap.put("addmember", new AddMemberCommand());
+        commandMap.put("kick", new KickCommand());
+        commandMap.put("create", new CreateCommand());
+        commandMap.put("join", new JoinCommand());
+        commandMap.put("leave", new LeaveCommand());
+        commandMap.put("disband", new DisbandCommand());
 
         for (Map.Entry<String, Command> entry : commandMap.entrySet()) {
             commandDescriptions.put(entry.getKey(), entry.getValue().getDescription());

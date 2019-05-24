@@ -1,5 +1,6 @@
 package io.github.mrbeezwax.jermobot.SquadTracker;
 
+import io.github.mrbeezwax.jermobot.Main;
 import sx.blah.discord.handle.obj.IUser;
 
 import java.util.Objects;
@@ -32,5 +33,10 @@ public class SquadMember {
     @Override
     public int hashCode() {
         return Objects.hash(user);
+    }
+
+    @Override
+    public String toString() {
+        return user.getDisplayName(Main.getGuild());
     }
 }

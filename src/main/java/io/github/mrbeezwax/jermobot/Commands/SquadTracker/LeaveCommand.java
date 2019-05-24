@@ -21,7 +21,8 @@ public class LeaveCommand implements Command {
         // Find squad user is in
         for (Squad s : Main.squadList) {
             if (s.getPlayerList().remove(member)) {
-                channel.sendMessage("You have left the squad");
+                channel.sendMessage("You have left the squad, " + s.getTitle());
+                if (s.getSize() == 0) Main.squadList.remove(s);
                 return;
             }
         }

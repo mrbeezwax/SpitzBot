@@ -47,4 +47,9 @@ public class Squad {
     public int getSize() {
         return playerList.size();
     }
+
+    @Override
+    public String toString() {
+        return title;
+    }
 }
