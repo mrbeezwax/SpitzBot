@@ -44,8 +44,8 @@ public class CommandHandler {
         commandMap.put("join", new JoinCommand());
         commandMap.put("leave", new LeaveCommand());
         commandMap.put("disband", new DisbandCommand());
-        commandMap.put("changerole", new ChangeRoleCommand());
-        commandMap.put("changetitle", new ChangeTitleCommand());
+        commandMap.put("role", new ChangeRoleCommand());
+        commandMap.put("title", new ChangeTitleCommand());
 
         for (Map.Entry<String, Command> entry : commandMap.entrySet()) {
             commandDescriptions.put(entry.getKey(), entry.getValue().getDescription());

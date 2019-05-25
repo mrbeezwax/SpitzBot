@@ -17,7 +17,7 @@ public class ChangeTitleCommand implements Command {
         IChannel channel = event.getChannel();
         IUser user = event.getAuthor();
         if (args.size() < 1) {
-            channel.sendMessage("Correct syntax: >changetitle {title}");
+            channel.sendMessage("Correct syntax: >title {title}");
             return;
         }
         for (Squad s : Main.squadList) {

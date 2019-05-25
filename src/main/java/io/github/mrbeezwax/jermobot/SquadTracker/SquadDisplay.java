@@ -1,12 +1,8 @@
-package io.github.mrbeezwax.jermobot.Commands.SquadTracker;
+package io.github.mrbeezwax.jermobot.SquadTracker;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import io.github.mrbeezwax.jermobot.Main;
-import io.github.mrbeezwax.jermobot.SquadTracker.Squad;
-import io.github.mrbeezwax.jermobot.SquadTracker.SquadMember;
-import org.json.JSONObject;
 import sx.blah.discord.handle.obj.IChannel;
 import sx.blah.discord.handle.obj.IMessage;
 
@@ -30,7 +26,6 @@ public class SquadDisplay {
         }
         message = channel.sendMessage("INITIALIZING SQUAD TRACKER...");
         Timer timer = new Timer();
-        final int[] counter = {0};
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -44,23 +39,25 @@ public class SquadDisplay {
         final String HEADER = "```==================================\n\tEidolon Hunt Squad Tracker\n==================================\n";
         final String FOOTER = "==================================\n" +
                 "Commands:\nTo join a squad, type >join {squad id} {role}\n" +
+                "To edit your role, type >role {role}\n" +
+                "To edit the title, type >title {title}\n" +
                 "To leave a squad, type >leave\n" +
                 "To create a squad, type >create  {your role} {title}\n" +
                 "To disband your squad, type >disband\n" +
-                "To add someone to your squad, type >add {@user} {role}\n" +
+                "To add someone to your squad, type >addmember {@user} {role}\n" +
                 "To kick someone from your squad, type >kick {member id}\n```";
 
-        String raw = HEADER;
-        raw += "[ID] Squad Title\nCurrent Squads:\n";
+        StringBuilder sb = new StringBuilder(HEADER);
+        sb.append("[ID] Squad Title\nCurrent Squads:\n");
         for (int i = 0 ; i < squadList.size(); i++) {
-            raw += String.format("[%d] %s\n", i + 1, squadList.get(i));
+            sb.append(String.format("[%d] %s\n", i + 1, squadList.get(i)));
             List<SquadMember> squad = squadList.get(i).getPlayerList();
             for (int j = 0; j < squad.size(); j++) {
-                raw += String.format("\t(%d) %s as %s\n", j + 1, squad.get(j), squad.get(j).getRole());
+                sb.append(String.format("\t(%d) %s as %s\n", j + 1, squad.get(j), squad.get(j).getRole()));
             }
         }
-        raw += FOOTER;
-        message.edit(raw);
+        sb.append(FOOTER);
+        message.edit(sb.toString());
     }
 
     private String getTime() {
@@ -82,7 +79,6 @@ public class SquadDisplay {
             }
             in.close();
             con.disconnect();
-            System.out.println(content.toString());
             return content.toString();
         } catch (IOException e) {
             System.out.println(e.toString());

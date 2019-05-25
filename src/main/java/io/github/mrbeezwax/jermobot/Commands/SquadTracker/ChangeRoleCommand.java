@@ -3,7 +3,6 @@ package io.github.mrbeezwax.jermobot.Commands.SquadTracker;
 import io.github.mrbeezwax.jermobot.Commands.Command;
 import io.github.mrbeezwax.jermobot.Main;
 import io.github.mrbeezwax.jermobot.SquadTracker.Squad;
-import io.github.mrbeezwax.jermobot.SquadTracker.SquadMember;
 import sx.blah.discord.handle.impl.events.guild.channel.message.MessageReceivedEvent;
 import sx.blah.discord.handle.obj.IChannel;
 import sx.blah.discord.handle.obj.IUser;
@@ -18,7 +17,7 @@ public class ChangeRoleCommand implements Command {
         IChannel channel = event.getChannel();
         IUser user = event.getAuthor();
         if (args.size() != 1) {
-            channel.sendMessage("Correct syntax: >changerole {role}");
+            channel.sendMessage("Correct syntax: >role {role}");
             return;
         }
         for (Squad s : Main.squadList) {
