@@ -38,13 +38,13 @@ public class SquadDisplay {
     }
 
     private void update(List<Squad> squadList) {
-        final String HEADER = "```==================================\n\tEidolon Hunt Squad Tracker\n==================================\n";
+        final String HEADER = "```\n==================================\n\tEidolon Hunt Squad Tracker\n==================================\n";
         final String FOOTER = "==================================\n" +
                 "Commands:\nTo join a squad, type >join {squad id} {role}\n" +
                 "To edit your role, type >role {role}\n" +
                 "To edit the title, type >title {title}\n" +
                 "To leave a squad, type >leave\n" +
-                "To create a squad, type >create  {your role} {title}\n" +
+                "To create a squad, type >create {your role} {title}\n" +
                 "To disband your squad, type >disband\n" +
                 "To add someone to your squad, type >addmember {@user} {role}\n" +
                 "To kick someone from your squad, type >kick {member id}\n```";
