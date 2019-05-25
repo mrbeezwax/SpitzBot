@@ -9,7 +9,7 @@ import sx.blah.discord.handle.obj.IUser;
 
 import java.util.List;
 
-public class ChangeTitle implements Command {
+public class ChangeTitleCommand implements Command {
     private static final String DESCRIPTION = "Change your squad's title";
 
     @Override

@@ -1,11 +1,20 @@
 package io.github.mrbeezwax.jermobot.Commands.SquadTracker;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import io.github.mrbeezwax.jermobot.Main;
 import io.github.mrbeezwax.jermobot.SquadTracker.Squad;
 import io.github.mrbeezwax.jermobot.SquadTracker.SquadMember;
+import org.json.JSONObject;
 import sx.blah.discord.handle.obj.IChannel;
 import sx.blah.discord.handle.obj.IMessage;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,9 +30,11 @@ public class SquadDisplay {
         }
         message = channel.sendMessage("INITIALIZING SQUAD TRACKER...");
         Timer timer = new Timer();
+        final int[] counter = {0};
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
+                if (isExpired()) Main.squadList.clear();
                 update(Main.squadList);
             }
         }, 0, 5000);       // 5 second period
@@ -50,5 +61,47 @@ public class SquadDisplay {
         }
         raw += FOOTER;
         message.edit(raw);
+    }
+
+    private String getTime() {
+        try {
+            System.setProperty("http.agent", "Chrome");
+            URL url = new URL("https://api.warframestat.us/pc/cetusCycle/");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            con.setRequestMethod("GET");
+            con.setConnectTimeout(5000);
+            con.setReadTimeout(5000);
+
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(con.getInputStream())
+            );
+            String inputLine;
+            StringBuilder content = new StringBuilder();
+            while ((inputLine = in.readLine()) != null) {
+                content.append(inputLine);
+            }
+            in.close();
+            con.disconnect();
+            System.out.println(content.toString());
+            return content.toString();
+        } catch (IOException e) {
+            System.out.println(e.toString());
+            return "ERROR";
+        }
+    }
+
+    private boolean isExpired() {
+        String response = getTime();
+        JsonObject jsonObject = new JsonParser().parse(response).getAsJsonObject();
+        String state = jsonObject.getAsJsonObject().get("state").getAsString();
+        String timeLeft = jsonObject.getAsJsonObject().get("timeLeft").getAsString().substring(0, 2);
+        if (timeLeft.charAt(1) == 'm') {
+            int digit = Integer.parseInt(timeLeft.substring(0, 1));
+            if (state.equalsIgnoreCase("night") && digit < 10) {
+                System.out.println("Squad Tracker Reset");
+                return true;
+            }
+        }
+        return false;
     }
 }
