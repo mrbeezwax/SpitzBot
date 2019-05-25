@@ -2,7 +2,6 @@ package io.github.mrbeezwax.jermobot.Commands;
 
 import io.github.mrbeezwax.jermobot.Commands.Activities.ResetCrayonLimitCommand;
 import io.github.mrbeezwax.jermobot.Commands.Activities.SlotMachineCommand;
-import io.github.mrbeezwax.jermobot.Commands.Activities.SurpriseCommand;
 import io.github.mrbeezwax.jermobot.Commands.Activities.TriviaCommand;
 import io.github.mrbeezwax.jermobot.Commands.Currency.*;
 import io.github.mrbeezwax.jermobot.Commands.SquadTracker.*;
@@ -30,7 +29,6 @@ public class CommandHandler {
         commandMap.put("add", new AddCommand());
         commandMap.put("trivia", new TriviaCommand());
         commandMap.put("set", new SetCommand());
-        commandMap.put("surprise", new SurpriseCommand());
         commandMap.put("bet", new SlotMachineCommand());
         commandMap.put("allbalances", new AllBalancesCommand());
         commandMap.put("resetlimit", new ResetCrayonLimitCommand());
