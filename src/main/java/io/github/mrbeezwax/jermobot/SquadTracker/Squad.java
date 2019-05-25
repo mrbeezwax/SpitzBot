@@ -1,6 +1,5 @@
 package io.github.mrbeezwax.jermobot.SquadTracker;
 
-import io.github.mrbeezwax.jermobot.Main;
 
 import java.util.*;
 

@@ -14,6 +14,10 @@ public class SquadMember {
         this.user = name;
     }
 
+    public void changeRole(String role) {
+        this.role = role;
+    }
+
     public String getRole() {
         return role;
     }
@@ -37,6 +41,6 @@ public class SquadMember {
 
     @Override
     public String toString() {
-        return user.getDisplayName(Main.getGuild());
+        return user.getDisplayName(Main.client.getGuilds().get(0));
     }
 }
