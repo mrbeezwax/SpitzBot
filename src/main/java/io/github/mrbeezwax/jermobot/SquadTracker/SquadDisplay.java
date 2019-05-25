@@ -17,8 +17,10 @@ import java.util.TimerTask;
 
 public class SquadDisplay {
     private IMessage message;
+    private static boolean hasReset;
 
     public SquadDisplay(IChannel channel) {
+        hasReset = false;
         if (channel.getFullMessageHistory().size() == 0) {
             System.out.println("CHANNEL EMPTY");
         } else {
@@ -94,8 +96,13 @@ public class SquadDisplay {
         if (timeLeft.charAt(1) == 'm') {
             int digit = Integer.parseInt(timeLeft.substring(0, 1));
             if (state.equalsIgnoreCase("night") && digit < 10) {
-                System.out.println("Squad Tracker Reset");
-                return true;
+                if (!hasReset) {
+                    System.out.println("Squad Tracker Reset");
+                    hasReset = true;
+                    return true;
+                }
+            } else if (hasReset) {
+                hasReset = false;
             }
         }
         return false;
