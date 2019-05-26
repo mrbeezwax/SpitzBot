@@ -58,7 +58,7 @@ public class CommandHandler {
         if (guild.getLongID() == 454228555958714388L) devMode = true;
         // Add specific channels
         if (devMode) {
-            unlockedChannels.addAll(guild.getCategoryByID(471521451837751306L).getChannels());
+            unlockedChannels.addAll(guild.getCategoryByID(471521451837751306L).getChannels());      // Dev Category
         } else {
             unlockedChannels.add(guild.getChannelByID(451579671461625856L));        // Mod Chat
             unlockedChannels.add(guild.getChannelByID(473880568317214730L));        // crayon checkin

@@ -41,7 +41,8 @@ public class SquadDisplay {
         final String HEADER = "```\n==================================\n\tEidolon Hunt Squad Tracker\n==================================\n" +
                                 "Format:\n" +
                                 "[Squad ID] SquadTitle\n" +
-                                "\t(User ID) Username\n";
+                                "\t(User ID) Username\n" +
+                                "==================================\n";
         final String FOOTER = "==================================\n" +
                 "Commands:\nTo join a squad, type >join {squad id} {role}\n" +
                 "To edit your role, type >role {role}\n" +
@@ -56,6 +57,7 @@ public class SquadDisplay {
                 "*Squads will be reset 10 minutes before night ends/day begins*";
 
         StringBuilder sb = new StringBuilder(HEADER);
+        sb.append("Current Squads:\n");
         for (int i = 0 ; i < squadList.size(); i++) {
             sb.append(String.format("[%d] %s\n", i + 1, squadList.get(i)));
             List<SquadMember> squad = squadList.get(i).getPlayerList();
