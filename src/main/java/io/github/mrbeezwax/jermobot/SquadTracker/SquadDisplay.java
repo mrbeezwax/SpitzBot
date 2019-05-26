@@ -34,11 +34,14 @@ public class SquadDisplay {
                 if (isExpired()) Main.squadList.clear();
                 update(Main.squadList);
             }
-        }, 0, 5000);       // 5 second period
+        }, 0, 7000);       // 7 second period
     }
 
     private void update(List<Squad> squadList) {
-        final String HEADER = "```\n==================================\n\tEidolon Hunt Squad Tracker\n==================================\n";
+        final String HEADER = "```\n==================================\n\tEidolon Hunt Squad Tracker\n==================================\n" +
+                                "Format:\n" +
+                                "[Squad ID] SquadTitle\n" +
+                                "\t(User ID) Username\n";
         final String FOOTER = "==================================\n" +
                 "Commands:\nTo join a squad, type >join {squad id} {role}\n" +
                 "To edit your role, type >role {role}\n" +
@@ -47,10 +50,12 @@ public class SquadDisplay {
                 "To create a squad, type >create {your role} {title}\n" +
                 "To disband your squad, type >disband\n" +
                 "To add someone to your squad, type >addmember {@user} {role}\n" +
-                "To kick someone from your squad, type >kick {member id}\n```";
+                "To kick someone from your squad, type >kick {user id}\n```" +
+                "**:warning:Notice:**\n" +
+                "*Squad Tracker Display updates every 7 seconds*\n" +
+                "*Squads will be reset 10 minutes before night ends/day begins*";
 
         StringBuilder sb = new StringBuilder(HEADER);
-        sb.append("[ID] Squad Title\nCurrent Squads:\n");
         for (int i = 0 ; i < squadList.size(); i++) {
             sb.append(String.format("[%d] %s\n", i + 1, squadList.get(i)));
             List<SquadMember> squad = squadList.get(i).getPlayerList();
