@@ -39,10 +39,10 @@ public class SquadDisplay {
 
     private void update(List<Squad> squadList) {
         final String HEADER = "```\n==================================\n\tEidolon Hunt Squad Tracker\n==================================\n" +
-                                "Format:\n" +
-                                "[Squad ID] SquadTitle\n" +
-                                "\t(User ID) Username\n" +
-                                "==================================\n";
+                "Format:\n" +
+                "[Squad ID] SquadTitle\n" +
+                "\t(User ID) Username\n" +
+                "==================================\n";
         final String FOOTER = "==================================\n" +
                 "Commands:\nTo join a squad, type >join {squad id} {role}\n" +
                 "To edit your role, type >role {role}\n" +
@@ -97,7 +97,12 @@ public class SquadDisplay {
 
     private boolean isExpired() {
         String response = getTime();
-        JsonObject jsonObject = new JsonParser().parse(response).getAsJsonObject();
+        JsonObject jsonObject;
+        try {
+            jsonObject = new JsonParser().parse(response).getAsJsonObject();
+        } catch (IllegalStateException e) {
+            return false;
+        }
         String state = jsonObject.getAsJsonObject().get("state").getAsString();
         String timeLeft = jsonObject.getAsJsonObject().get("timeLeft").getAsString().substring(0, 2);
         if (timeLeft.charAt(1) == 'm') {
@@ -113,5 +118,6 @@ public class SquadDisplay {
             }
         }
         return false;
+
     }
 }
