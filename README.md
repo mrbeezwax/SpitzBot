@@ -1,6 +1,6 @@
-# *UPDATE: The commit history and some files have been hidden due to security concerns*
+## *UPDATE: The commit history and some files have been hidden due to security concerns*
 
-# <img src="https://github.com/mrbeezwax/SpitzBot/blob/master/jermo_avatar.png" alt="Spitz Bot" width="50"/> Spitz Bot v1.16
+# <img src="https://github.com/mrbeezwax/SpitzBot/blob/master/jermo_avatar.png" alt="Spitz Bot" width="50"/> Spitz Bot v1.17
 
 ## Discord4J Repo - https://github.com/Discord4J/Discord4J
 
@@ -12,6 +12,7 @@ Spitz Bot is a Discord bot developed in Java using Discord4J for a Twitch commun
 - Trivia
 - Slot Machine
 - Crayon Store System
+- Warframe Eidolon Hunt Squad System
 
 ### Commands
 Type >help for a complete list of commands. If you are a user with Administrator permissions, you will see all commands.
