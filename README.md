@@ -24,7 +24,5 @@ Type >help for a complete list of commands. If you are a user with Administrator
 - Google Sheets API
 - Google Client Library
 
-### Contact (Discord ID)
-**Streamer** - jermo222#1697\
-**Developer** - friendlynood#1531\
-**Artist** - --31-Z-1F--#7575
+### Contact
+Discord - friendlynood#1531
