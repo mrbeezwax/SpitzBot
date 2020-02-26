@@ -1,3 +1,5 @@
+# DISCONTINUED
+
 ## *UPDATE: The commit history and some files have been hidden due to security concerns*
 
 # <img src="https://github.com/mrbeezwax/SpitzBot/blob/master/jermo_avatar.png" alt="Spitz Bot" width="50"/> Spitz Bot v1.17
